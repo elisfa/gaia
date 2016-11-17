@@ -1,0 +1,36 @@
+import sys
+from optparse import OptionParser
+import re
+import os
+import glob
+import json
+
+def analyze(audio_folder, result_folder):
+    glob.glob(os.path.join('*','.mp3'))
+    with open('json_file', 'w') as f:
+        for allfiles in os.listdir(os.getcwd()):
+            EXTRACTOR = "/usr/local/bin/essentia_streaming_extractor_music"
+            root, extention = os.path.splitext(allfiles)
+            allfiles = os.listdir('.')
+            os.system(EXTRACTOR + ' "' + 'audio_file' + '" "' + 'json_file' + '"')
+            return
+
+
+if __name__ == "__main__":
+
+    parser = OptionParser(usage = '%prog [options] audio_folder result_filelist_file\n' +
+    """
+    Analyzes audio files found in the input audio_folder and stores results to result_folder.
+    """
+    )
+
+    options, args = parser.parse_args()
+
+    try:
+        audio_folder = args[0]
+        result_folder = args[1]
+    except:
+        parser.print_help()
+        sys.exit(1)
+
+    analyze(audio_folder, result_folder)
